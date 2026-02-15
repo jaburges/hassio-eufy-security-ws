@@ -13,12 +13,12 @@ RUN \
     && npm install --force \
     "eufy-security-ws@${EUFY_SECURITY_WS_VERSION}"
 
-# Install patched eufy-security-client with T85V0 support and crash fix
+# Install patched eufy-security-client with T85V0 support, lock timing fix, and WebRTC improvements
 # Remove nested copy so eufy-security-ws uses our patched top-level version
-COPY eufy-security-client-3.7.1.tgz /tmp/eufy-security-client-3.7.1.tgz
-RUN npm install --force /tmp/eufy-security-client-3.7.1.tgz \
+COPY eufy-security-client-3.7.2.tgz /tmp/eufy-security-client-3.7.2.tgz
+RUN npm install --force /tmp/eufy-security-client-3.7.2.tgz \
     && rm -rf /usr/src/app/node_modules/eufy-security-ws/node_modules/eufy-security-client \
-    && rm /tmp/eufy-security-client-3.7.1.tgz
+    && rm /tmp/eufy-security-client-3.7.2.tgz
 
 COPY run.sh /
 RUN chmod a+x /run.sh
